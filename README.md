@@ -95,4 +95,4 @@ npm run monitor -- export --file=exports/backup-YYYY-MM-DD.json
 
 Exports include all eight record types and refuse overwrite. Native backup and tested restore remain necessary. There is no JSON restore command. [Validation evidence](docs/validation.md).
 
-Built and optionally operated through [Omni by Enterprise DNA](https://enterprisedna.co/omni/instead-of/fiddler).
+Built and optionally operated through [Omni by Enterprise DNA](https://enterprisedna.co/omni/instead-of/fiddler?utm_source=github&utm_medium=readme&utm_campaign=fiddler).
