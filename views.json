@@ -10,15 +10,15 @@
       },
       {
         "title": "Dataset completeness",
-        "sql": "SELECT model,external_id,kind,expected_count,loaded_count,outcome_count,missing_features FROM dataset_quality ORDER BY model,external_id"
+        "sql": "SELECT m.name||' '||m.version AS model,q.external_id,q.kind,q.expected_count,q.loaded_count,q.outcome_count,q.missing_features FROM dataset_quality q JOIN models m ON m.id=q.model_id ORDER BY model,q.external_id"
       },
       {
         "title": "Overdue follow-ups",
-        "sql": "SELECT model,title,owner,due FROM overdue_actions ORDER BY due"
+        "sql": "SELECT m.name||' '||m.version AS model,a.title,a.owner,a.due FROM actions a JOIN models m ON m.id=a.model_id WHERE a.status='open' AND a.due<current_date ORDER BY a.due"
       },
       {
         "title": "Evidence checks",
-        "sql": "SELECT model,rule,due,source_rule FROM compliance_findings ORDER BY model,rule"
+        "sql": "SELECT m.name||' '||m.version AS model,f.rule,f.due,f.source_rule FROM compliance_findings f JOIN models m ON m.id=f.model_id ORDER BY model,f.rule"
       }
     ]
   }
