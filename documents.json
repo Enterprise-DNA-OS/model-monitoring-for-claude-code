@@ -1,11 +1,43 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "model-card",
+    "title": "Monitoring definition and evidence",
+    "for_each": "SELECT id,name,version FROM models ORDER BY name,version",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Definition",
+        "layout": "record",
+        "sql": "SELECT name,version,owner,purpose,feature_name,unit,cuts,drift_limit,mae_limit,min_samples,review_due,retention_review_due FROM models WHERE id=$1"
+      },
+      {
+        "title": "Loaded windows",
+        "sql": "SELECT external_id,kind,window_start,window_end,expected_count,loaded_count,outcome_count FROM dataset_quality WHERE model_id=$1"
+      },
+      {
+        "title": "Recorded reviews",
+        "sql": "SELECT actor,created_at,result->>'status' AS status,result->>'distance' AS distance,result->>'mae' AS mean_absolute_error FROM evaluations WHERE model_id=$1 ORDER BY created_at"
+      }
+    ]
+  },
+  {
+    "name": "remediation-brief",
+    "title": "Monitoring follow-up brief",
+    "for_each": "SELECT id,name FROM models ORDER BY name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Open work",
+        "sql": "SELECT title,owner,due FROM actions WHERE model_id=$1 AND status='open' ORDER BY due"
+      },
+      {
+        "title": "Evidence notes",
+        "sql": "SELECT body,actor,created_at FROM notes WHERE model_id=$1 ORDER BY created_at"
+      },
+      {
+        "title": "Compliance support",
+        "sql": "SELECT rule,due,source_rule FROM compliance_findings WHERE model_id=$1"
+      }
     ]
   }
 ]

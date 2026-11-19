@@ -1,13 +1,24 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Model Monitoring for Claude Code: what needs attention, rendered by npm run view",
+    "title": "The monitoring week",
+    "subtitle": "Fictional demo. Reconcile each source window before relying on its metrics.",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Review queue",
+        "sql": "SELECT name,version,owner,review_due,status,distance,mae,unreviewed_windows FROM monitoring_queue ORDER BY name,version"
+      },
+      {
+        "title": "Dataset completeness",
+        "sql": "SELECT model,external_id,kind,expected_count,loaded_count,outcome_count,missing_features FROM dataset_quality ORDER BY model,external_id"
+      },
+      {
+        "title": "Overdue follow-ups",
+        "sql": "SELECT model,title,owner,due FROM overdue_actions ORDER BY due"
+      },
+      {
+        "title": "Evidence checks",
+        "sql": "SELECT model,rule,due,source_rule FROM compliance_findings ORDER BY model,rule"
       }
     ]
   }

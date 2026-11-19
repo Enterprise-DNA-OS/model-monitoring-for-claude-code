@@ -1,0 +1,37 @@
+{
+  "source_ref": "Fictional Fiddler-shaped extracts; explicit column mapping, counts reconciled",
+  "files": [
+    {
+      "external_id": "example-reference",
+      "kind": "baseline",
+      "path": "baseline.csv",
+      "window_start": "2026-01-01T00:00:00Z",
+      "window_end": "2026-02-01T00:00:00Z",
+      "expected_count": 4,
+      "columns": {
+        "event_id": "event_id",
+        "occurred_at": "timestamp",
+        "feature": "order_size",
+        "prediction": "predicted_cartons",
+        "actual": "actual_cartons",
+        "segment": "region"
+      }
+    },
+    {
+      "external_id": "example-production",
+      "kind": "production",
+      "path": "production.csv",
+      "window_start": "2026-02-01T00:00:00Z",
+      "window_end": "2026-03-01T00:00:00Z",
+      "expected_count": 4,
+      "columns": {
+        "event_id": "event_id",
+        "occurred_at": "timestamp",
+        "feature": "order_size",
+        "prediction": "predicted_cartons",
+        "actual": "actual_cartons",
+        "segment": "region"
+      }
+    }
+  ]
+}

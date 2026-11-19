@@ -1,0 +1,5 @@
+event_id,timestamp,order_size,predicted_cartons,actual_cartons,region
+b1,2026-01-05T10:00:00Z,25,100,98,North
+b2,2026-01-06T10:00:00Z,75,100,98,South
+b3,2026-01-07T10:00:00Z,25,100,98,North
+b4,2026-01-08T10:00:00Z,75,100,98,South

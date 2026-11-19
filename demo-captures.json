@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Distribution changes",
+    "ask": "Has the order-size mix changed since our reference period?",
+    "command": "npm run monitor -- drift --baseline=reference --production=this-week",
+    "output": "  model           version  baseline  production  distance  limit  missing  status      \n  --------------  -------  --------  ----------  --------  -----  -------  ------------\n  Harbour Demand  v1       20        20          0.8       0.25   2        needs review"
+  },
+  {
+    "title": "Observed forecast error",
+    "ask": "How far are our forecasts from the results we have received?",
+    "command": "npm run monitor -- performance --baseline=reference --production=this-week",
+    "output": "  model           outcomes  total  mae  rmse  bias  unit     status      \n  --------------  --------  -----  ---  ----  ----  -------  ------------\n  Harbour Demand  16        20     20   20    20    cartons  needs review"
+  },
+  {
+    "title": "Business regions",
+    "ask": "Which regions need a closer look, and how much evidence do we have?",
+    "command": "npm run monitor -- segments --baseline=reference --production=this-week",
+    "output": "  segment  baseline  production  outcomes  distance  mae  status      \n  -------  --------  ----------  --------  --------  ---  ------------\n  North    10        10          6         0.6       20   needs review\n  South    10        10          10        1         20   needs review"
+  }
+]
